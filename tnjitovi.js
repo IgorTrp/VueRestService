@@ -13,7 +13,7 @@ async function overiPovlastice(req){
     povlastice:token
   };
 
-  vrednost=await fetch('http://localhost:11000/authm', {
+  vrednost=await fetch('https://vue-verification.herokuapp.com/authm', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body:JSON.stringify(data)
@@ -80,7 +80,7 @@ ruter.get("/getNewest", async(req,res)=>{
 
 //insert
 ruter.put("/", async(req,res)=>{
-  fetch('http://localhost:11000/authLoggedIn', {
+  fetch('https://vue-verification.herokuapp.com/authLoggedIn', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
     credentials: 'include',

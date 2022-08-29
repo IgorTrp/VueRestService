@@ -7,7 +7,7 @@ const cors = require('cors')
 
 
 var corsOptions = {
-  origin: 'http://localhost:9000',
+  origin: 'https://vue-gui.herokuapp.com/',
   optionsSuccessStatus: 200
 }
 

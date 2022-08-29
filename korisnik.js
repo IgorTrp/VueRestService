@@ -15,7 +15,7 @@ async function overiPovlastice(req){
     povlastice:token
   };
 
-  vrednost=await fetch('http://localhost:11000/auth', {
+  vrednost=await fetch('https://vue-verification.herokuapp.com/auth', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body:JSON.stringify(data)
