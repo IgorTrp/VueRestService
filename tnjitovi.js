@@ -52,7 +52,7 @@ ruter.use(cookieParser());
 //GET
 ruter.get("/", async(req,res)=>{
   if(isNaN((parseInt(req.query.id)))){
-  db.sequelize.query('SELECT TOP 100 KorisnikId,KorisnickoIme,Sadrzaj,Goreglasovi,Doleglasovi,Datum FROM Komentar LEFT JOIN Korisnik ON Komentar.KorisnikId = Korisnik.Id ORDER BY Datum Desc')
+  db.sequelize.query('SELECT KorisnikId,KorisnickoIme,Sadrzaj,Goreglasovi,Doleglasovi,Datum FROM Komentar LEFT JOIN Korisnik ON Komentar.KorisnikId = Korisnik.Id ORDER BY Datum Desc LIMIT 100')
   .then(function(result) {res.status(200).send(result);})
   .catch( err => res.status(500).json(err) );
   }
@@ -67,7 +67,7 @@ ruter.get("/", async(req,res)=>{
 //GET NEWEST
 ruter.get("/getNewest", async(req,res)=>{
   if(isNaN((parseInt(req.query.id)))){
-  db.sequelize.query('SELECT TOP 1 KorisnickoIme,Sadrzaj,Datum FROM Komentar LEFT JOIN Korisnik ON Komentar.KorisnikId = Korisnik.Id ORDER BY Datum Desc')
+  db.sequelize.query('SELECT KorisnickoIme,Sadrzaj,Datum FROM Komentar LEFT JOIN Korisnik ON Komentar.KorisnikId = Korisnik.Id ORDER BY Datum Desc LIMIT 1')
   .then(function(result) {res.status(200).send(result);})
   .catch( err => res.status(500).json(err) );
   }
@@ -103,7 +103,7 @@ ruter.put("/", async(req,res)=>{
   let nd =new Date();
   let dan=nd.getFullYear()+"-"+(nd.getMonth()+1)+"-"+nd.getUTCDate()+" "+nd.getHours()+":"+nd.getMinutes()+":"+nd.getSeconds();
 
-  await db.sequelize.query("Insert into Komentar values ("+par1+",null,'"+par2+"',0,0,'"+dan+"')")
+  await db.sequelize.query("Insert into Komentar (korisnikId,komentarid,sadrzaj,goreglasovi,doleglasovi,datum) values ("+par1+",null,'"+par2+"',0,0,'"+dan+"')")
   .then(resp=>{
     res.status(200).send({Sadrzaj:par2,Datum:dan,Goreglasovi:0,Doleglasovi:0})
   })
