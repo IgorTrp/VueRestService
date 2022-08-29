@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "joi": "^17.5.0",
+    "node-fetch": "2.0",
+    "sequelize": "^6.12.5",
+    "tedious": "^14.0.0"
+  }
+}
