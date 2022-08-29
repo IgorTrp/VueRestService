@@ -2,7 +2,7 @@ const ekspres = require("express");
 const path=require("path");
 const ruter=ekspres.Router();
 const db = require("./models/index.js");
-const joi=require("Joi");
+const joi=require("joi");
 const cors = require('cors')
 
 

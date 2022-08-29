@@ -1,7 +1,7 @@
 const ekspres = require("express");
 const ruter=ekspres.Router();
 const db = require("./models/index.js");
-const joi=require("Joi");
+const joi=require("joi");
 const cors = require('cors');
 const bcrypt=require('bcrypt');
 const fetch = require('node-fetch');
