@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "Igor",
+    "password": "bazapodataka123",
+    "database": "SkritBaza",
+    "host": "localhost",
+    "dialect": "mssql",
+    "port":"1433"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "wvffcmfgeuhjyy",
+    "password": "e0ede08221ce6426a468164f1cc1a791907da567c724cc1c7cd70ec27ab7aaa5",
+    "database": "dbqsnnmvr2han0",
+    "host": "ec2-99-80-170-190.eu-west-1.compute.amazonaws.com",
+    "dialect": "postgres",
+    "port":"5432",
+    "ssl":true,
+    "dialectOptions":{
+      "ssl":{
+        "require":true,
+        "rejectUnauthorized":false
+      }
+    }
+  }
+}

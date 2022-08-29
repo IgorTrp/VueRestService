@@ -1,6 +1,6 @@
 const ekspres = require("express");
 const ruter=ekspres.Router();
-const db = require("./models/db-export.js");
+const db = require("./models/index.js");
 const joi=require("Joi");
 const cors = require('cors')
 const fetch = require('node-fetch');

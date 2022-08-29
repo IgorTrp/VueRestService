@@ -20,4 +20,4 @@ app.use('/admin/korisnik-porudzbina',KorisnikPorudzbina);
 app.use('/get',tnjitovi);
 
 
-app.listen(80);
+app.listen(process.env.PORT || 80);
