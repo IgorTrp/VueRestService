@@ -297,7 +297,7 @@ ruter.post("/getUserId", async(req,res)=>{
   //dobavljamo podatke iz baze
   const result = await db.sequelize.query("SELECT Id FROM Korisnik WHERE KorisnickoIme="+par1,{type: db.sequelize.QueryTypes.SELECT});
   const id=result[0].id;
-  res.status(200).send({Id:id});
+  res.status(200).send({id:id});
   }
   catch(err){
     console.log("Nesto je poslo po zlu"+err);
