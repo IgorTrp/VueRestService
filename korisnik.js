@@ -255,11 +255,11 @@ ruter.post("/checkUserPrivilage", async(req,res)=>{
   const result = await db.sequelize.query("SELECT Povlastice,Lozinka FROM Korisnik WHERE KorisnickoIme="+par1,{type: db.sequelize.QueryTypes.SELECT});
   //console.log(result[0].Povlastice +" "+result[0].Lozinka);
   //uporedjujemo lozinku
-  let povlastice=result[0].povlastice;
-  let lozinka=result[0].lozinka;
+  let povlastice=result[0].Povlastice;
+  let lozinka=result[0].Lozinka;
 
   if(!lozinka){
-    res.status(500).send("Greska bazi lozinka nije ucitana");
+    res.status(500).send("Greska bazi lozinka nije ucitana " +lozinka+" "+par2+" "+par1);
   }
 
   if(!bcrypt.compareSync(par2, lozinka)){
