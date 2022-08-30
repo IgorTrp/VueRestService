@@ -4,9 +4,9 @@ const db = require("./models/index.js");
 const joi=require("joi");
 const cors = require('cors')
 const fetch = require('node-fetch');
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 
-async function overiPovlastice(req){
+/*async function overiPovlastice(req){
   
   let token=req.cookies['token'];
   data={
@@ -27,7 +27,7 @@ async function overiPovlastice(req){
     }
     });
     return vrednost;
-}
+}*/
 
 
 var corsOptions = {
@@ -47,7 +47,7 @@ const semad=joi.object({
 
 ruter.use(ekspres.json());
 ruter.use(ekspres.urlencoded({ extended: true }));
-ruter.use(cookieParser());
+//ruter.use(cookieParser());
 
 //GET
 ruter.get("/", async(req,res)=>{

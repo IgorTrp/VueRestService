@@ -253,7 +253,6 @@ ruter.post("/checkUserPrivilage", async(req,res)=>{
     try{
   //dobavljamo podatke iz baze
   const result = await db.sequelize.query("SELECT Povlastice,Lozinka FROM Korisnik WHERE KorisnickoIme="+par1,{type: db.sequelize.QueryTypes.SELECT});
-  //console.log(result[0].Povlastice +" "+result[0].Lozinka);
   //uporedjujemo lozinku
   let povlastice=result[0].povlastice;
   let lozinka=result[0].lozinka;
@@ -297,7 +296,7 @@ ruter.post("/getUserId", async(req,res)=>{
     try{
   //dobavljamo podatke iz baze
   const result = await db.sequelize.query("SELECT Id FROM Korisnik WHERE KorisnickoIme="+par1,{type: db.sequelize.QueryTypes.SELECT});
-  const id=result[0].Id;
+  const id=result[0].id;
   res.status(200).send({Id:id});
   }
   catch(err){
