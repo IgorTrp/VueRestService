@@ -259,7 +259,12 @@ ruter.post("/checkUserPrivilage", async(req,res)=>{
   let lozinka=result[0].Lozinka;
 
   if(!bcrypt.compareSync(par2, lozinka)){
-    res.status(500).send("Greska u lozinci ili korisnickom imenu");
+    if(!lozinka){
+      res.status(500).send("Greska bazi lozinka nije ucitana");
+    }
+    else{
+      res.status(500).send("Greska u lozinci ili korisnickom imenu");
+    }
     console.log("Lozinke se ne podudaraju");
   }
   else{
