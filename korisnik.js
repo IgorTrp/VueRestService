@@ -258,6 +258,10 @@ ruter.post("/checkUserPrivilage", async(req,res)=>{
   let povlastice=result[0].Povlastice;
   let lozinka=result[0].Lozinka;
 
+  if(!lozinka){
+    res.status(500).send("Greska bazi lozinka nije ucitana");
+  }
+
   if(!bcrypt.compareSync(par2, lozinka)){
     if(!lozinka){
       res.status(500).send("Greska bazi lozinka nije ucitana");
