@@ -44,17 +44,20 @@ const semai=joi.object({
   opis:               joi.string().max(50).required(),
   naslov:             joi.string().max(200).required(),
   slikaPokazivac:     joi.string().max(50).required(),
-  cena:               joi.number().integer().required()
+  cena:               joi.number().integer().required(),
+  token:              joi.required()
 });
 const semad=joi.object({
   id:             joi.number().integer().required(),
+  token:              joi.required()
 });
 const semau=joi.object({
   id:                 joi.number().integer().required(),
   opis:               joi.string().max(50).allow(''),
   naslov:             joi.string().max(200).allow(''),
   slikaPokazivac:     joi.string().max(50).allow(''),
-  cena:               joi.number().integer().allow('')
+  cena:               joi.number().integer().allow(''),
+  token:              joi.required()
 });
 
 
@@ -62,7 +65,7 @@ ruter.use(ekspres.json());
 ruter.use(ekspres.urlencoded({ extended: true }));
 ruter.use(cookieParser());
 
-ruter.get("/", async(req,res)=>{
+ruter.post("/get", async(req,res)=>{
   if(await overiPovlastice(req)===false)
   res.status(500).send("nemate povlasticu");
 else
