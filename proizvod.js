@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 
 async function overiPovlastice(req){
   
-  let token=req.cookies['token'];
+  let token=req.body.token;
   data={
     povlastice:token
   };
