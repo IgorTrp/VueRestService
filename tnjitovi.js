@@ -85,7 +85,7 @@ ruter.put("/", async(req,res)=>{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
     credentials: 'include',
-    body: JSON.stringify({povlastice:req.body.Token})
+    body: JSON.stringify({povlastice:req.body.token})
 }).then(resp=>{
     if(resp.status==400 || resp.status==500){
       res.status(500).send("Niste ulogovani");
@@ -106,7 +106,7 @@ ruter.put("/", async(req,res)=>{
 
   await db.sequelize.query("Insert into Komentar (korisnikId,komentarid,sadrzaj,goreglasovi,doleglasovi,datum) values ("+par1+",null,'"+par2+"',0,0,'"+dan+"')")
   .then(resp=>{
-    res.status(200).send({Sadrzaj:par2,Datum:dan,Goreglasovi:0,Doleglasovi:0})
+    res.status(200).send({sadrzaj:par2,datum:dan,goreglasovi:0,doleglasovi:0})
   })
   .catch( erro =>{ res.status(500).send(erro);
     return;
