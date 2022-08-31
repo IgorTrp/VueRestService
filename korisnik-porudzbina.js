@@ -15,22 +15,25 @@ ruter.use(cors(corsOptions));
 const semai=joi.object({
   id:                joi.number().integer().required(),
   korisnikId:        joi.number().integer().required(),
-  porudzbinaId:      joi.number().integer().required()
+  porudzbinaId:      joi.number().integer().required(),
+  token:              joi.required()
 });
 const semad=joi.object({
-  id:           joi.number().integer().required()
+  id:           joi.number().integer().required(),
+  token:              joi.required()
 });
 const semau=joi.object({
   id:                joi.number().integer().required(),
   korisnikId:        joi.number().integer().allow(''),
-  porudzbinaId:      joi.number().integer().allow('')
+  porudzbinaId:      joi.number().integer().allow(''),
+  token:              joi.required()
 });
 
 ruter.use(ekspres.json());
 ruter.use(ekspres.urlencoded({ extended: true }));
 
 //GET
-ruter.get("/", (req,res)=>{
+ruter.post("/get", (req,res)=>{
   db.sequelize.query('SELECT * FROM KorisnikPorudzbina')
   .then(function(result) {res.send(result);})
   .catch( err => res.status(500).json(err) );

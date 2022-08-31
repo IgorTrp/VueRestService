@@ -43,24 +43,27 @@ const semai=joi.object({
   ime:            joi.string().max(50).required(),
   prezime:        joi.string().max(50).required(),
   telefon:        joi.string().max(50).required(),
-  adresaId:       joi.number().integer().required()
+  adresaId:       joi.number().integer().required(),
+  token:              joi.required()
 });
 const semad=joi.object({
   id:             joi.number().integer().required(),
+  token:              joi.required()
 });
 const semau=joi.object({
   id:             joi.number().integer().required(),
   ime:            joi.string().max(50).allow(''),
   prezime:        joi.string().max(50).allow(''),
   telefon:        joi.string().max(50).allow(''),
-  adresaId:       joi.number().integer().allow('')
+  adresaId:       joi.number().integer().allow(''),
+  token:              joi.required()
 });
 
 ruter.use(ekspres.json());
 ruter.use(ekspres.urlencoded({ extended: true }));
 ruter.use(cookieParser());
 //GET
-ruter.get("/", async(req,res)=>{
+ruter.post("/get", async(req,res)=>{
   if(await overiPovlastice(req)===false)
   res.status(500).send("nemate povlasticu");
 else

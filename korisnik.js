@@ -46,10 +46,12 @@ const semai=joi.object({
   povlastice:        joi.string().max(50).required(),
   korisnickoIme:     joi.string().max(50).required(),
   lozinka:           joi.string().max(256).required(),
-  datumRegistracije: joi.string().max(50).required()
+  datumRegistracije: joi.string().max(50).required(),
+  token:              joi.required()
 });
 const semad=joi.object({
   id:                joi.number().integer().required(),
+  token:              joi.required()
 });
 const semau=joi.object({
   id:                joi.number().integer().required(),
@@ -57,7 +59,8 @@ const semau=joi.object({
   povlastice:        joi.string().max(50).allow(''),
   korisnickoIme:     joi.string().max(50).allow(''),
   lozinka:           joi.string().max(256).allow(''),
-  datumRegistracije: joi.string().max(50).allow('')
+  datumRegistracije: joi.string().max(50).allow(''),
+  token:              joi.required()
 });
 
 const semar=joi.object({
@@ -75,7 +78,7 @@ ruter.use(ekspres.urlencoded({ extended: true }));
 ruter.use(cookieParser());
 
 //GET
-ruter.get("/", async(req,res)=>{
+ruter.post("/get", async(req,res)=>{
   console.log(overiPovlastice(req)===false);
   if(await overiPovlastice(req)===false)
     res.status(500).send("nemate povlasticu");
