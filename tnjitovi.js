@@ -39,7 +39,8 @@ var corsOptions = {
 ruter.use(cors(corsOptions));
 const semai=joi.object({
   Id:             joi.number().integer().required(),
-  Sadrzaj:             joi.string().max(200).required()
+  Sadrzaj:             joi.string().max(200).required(),
+  Token:             joi.string().optional()
 });
 const semad=joi.object({
   id:             joi.number().integer().required(),
@@ -84,9 +85,9 @@ ruter.put("/", async(req,res)=>{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
     credentials: 'include',
-    body: JSON.stringify({})
+    body: JSON.stringify({povlastice:req.body.Token})
 }).then(resp=>{
-    if(resp.status==400 && resp.status==500){
+    if(resp.status==400 || resp.status==500){
       res.status(500).send("Niste ulogovani");
       return;
     }});
