@@ -5,12 +5,12 @@ const joi=require("joi");
 const cors = require('cors');
 const bcrypt=require('bcrypt');
 const fetch = require('node-fetch');
-const cookieParser = require('cookie-parser');
+
 
 
 async function overiPovlastice(req){
   
-  let token=req.cookies['token'];
+  let token=req.body.token;
   data={
     povlastice:token
   };
@@ -75,7 +75,7 @@ const semac=joi.object({
 
 ruter.use(ekspres.json());
 ruter.use(ekspres.urlencoded({ extended: true }));
-ruter.use(cookieParser());
+
 
 //GET
 ruter.post("/get", async(req,res)=>{

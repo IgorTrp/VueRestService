@@ -5,7 +5,6 @@ const db = require("./models/index.js");
 const joi=require("joi");
 const cors = require('cors')
 const fetch = require('node-fetch');
-const cookieParser = require('cookie-parser');
 
 
 async function overiPovlastice(req){
@@ -63,7 +62,6 @@ const semau=joi.object({
 
 ruter.use(ekspres.json());
 ruter.use(ekspres.urlencoded({ extended: true }));
-ruter.use(cookieParser());
 
 ruter.post("/get", async(req,res)=>{
   if(await overiPovlastice(req)===false)
