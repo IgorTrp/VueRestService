@@ -44,6 +44,10 @@ const semai=joi.object({
 });
 const semad=joi.object({
   id:             joi.number().integer().required(),
+  token:             joi.string().optional(),
+  ime:             joi.string().optional(),
+  datum:             joi.string().optional(),
+  sadrzaj:             joi.string().optional(),
 });
 
 ruter.use(ekspres.json());
