@@ -116,23 +116,33 @@ ruter.put("/", async(req,res)=>{
 );
 
 //delete
-/*ruter.delete("/", async(req,res)=>{
-  res.status(500).send("Ova primena nije omogucena");
-  if(await overiPovlastice(req)===false)
-  res.status(500).send("nemate povlasticu");
-else{
+ruter.delete("/", async(req,res)=>{
+
+  fetch('https://vue-verification.herokuapp.com/authLoggedIn', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
+    credentials: 'include',
+    body: JSON.stringify({povlastice:req.body.Token})
+  }).then(resp=>{
+    if(resp.status==400 || resp.status==500){
+      res.status(500).send("Niste ulogovani");
+      return;
+    }});
 
   const param1=req.body.id;
+  const param2=req.body.sadrzaj;
+  const param3=req.body.datum;
+
   let { value,error } = semad.validate(req.body);
   if(typeof error !== 'undefined'){
     res.status(400).send(error.details);
   }
   else{
-  db.sequelize.query("DELETE FROM Primalac WHERE Id="+param1)
+  db.sequelize.query("DELETE FROM Komentar WHERE korisnikid="+param1 +" AND sadrzaj="+param2+" AND datum="+param3)
   .then(function(result) {res.send(result);})
   .catch( err => res.status(500).json(err) );
   }
-}
-});*/
+
+});
 
 module.exports=ruter;
