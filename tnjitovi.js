@@ -143,7 +143,7 @@ ruter.delete("/", async(req,res)=>{
   }
   else{
   db.sequelize.query("DELETE FROM Komentar WHERE korisnikid="+param1 +" AND sadrzaj='"+param2+"' AND datum='"+param3+"';")
-  .then(function(result) {res.send(result);})
+  .then(function(result) {res.status(200).send(result);})
   .catch( err => res.status(500).json(err) );
   }
 
