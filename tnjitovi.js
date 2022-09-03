@@ -126,7 +126,7 @@ ruter.delete("/", async(req,res)=>{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
     credentials: 'include',
-    body: JSON.stringify({povlastice:req.body.Token})
+    body: JSON.stringify({povlastice:req.body.token})
   }).then(resp=>{
     if(resp.status==400 || resp.status==500){
       res.status(500).send("Niste ulogovani");
@@ -138,7 +138,7 @@ ruter.delete("/", async(req,res)=>{
     });
 
   if(overa){
-    
+
   const param1=req.body.id;
   const param2=req.body.sadrzaj;
   const param3=req.body.datum;
