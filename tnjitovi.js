@@ -138,7 +138,7 @@ ruter.delete("/", async(req,res)=>{
     res.status(400).send(error.details);
   }
   else{
-  db.sequelize.query("DELETE FROM Komentar WHERE korisnikid="+param1 +" AND sadrzaj="+param2+" AND datum="+param3)
+  db.sequelize.query("DELETE FROM Komentar WHERE korisnikid="+param1 +" AND sadrzaj='"+param2+"' AND datum='"+param3+"';")
   .then(function(result) {res.send(result);})
   .catch( err => res.status(500).json(err) );
   }
