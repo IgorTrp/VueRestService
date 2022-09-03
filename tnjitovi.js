@@ -122,7 +122,7 @@ ruter.put("/", async(req,res)=>{
 //delete
 ruter.delete("/", async(req,res)=>{
 
-  fetch('https://vue-verification.herokuapp.com/authLoggedIn', {
+  let overa= await fetch('https://vue-verification.herokuapp.com/authLoggedIn', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
     credentials: 'include',
@@ -130,9 +130,15 @@ ruter.delete("/", async(req,res)=>{
   }).then(resp=>{
     if(resp.status==400 || resp.status==500){
       res.status(500).send("Niste ulogovani");
-      return;
-    }});
+      return false
+    }
+    else{
+      return true;
+    }
+    });
 
+  if(overa){
+    
   const param1=req.body.id;
   const param2=req.body.sadrzaj;
   const param3=req.body.datum;
@@ -147,6 +153,7 @@ ruter.delete("/", async(req,res)=>{
   .catch( err => res.status(500).json(err) );
   }
 
+  }
 });
 
 module.exports=ruter;
