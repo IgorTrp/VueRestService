@@ -55,13 +55,13 @@ ruter.use(ekspres.urlencoded({ extended: true }));
 
 //GET
 ruter.get("/", async(req,res)=>{
-  if(!req.query.ime){
-  db.sequelize.query('SELECT KorisnickoIme,Sadrzaj,COUNT(o.goreglasovi) AS gore,COUNT(o.doleglasovi) AS dole,Datum FROM komentar LEFT JOIN korisnik AS kr ON komentar.KorisnikId = kr.Id LEFT JOIN ocena AS o ON komentar.id=o.komentarid GROUP BY komentar.id,komentar.korisnikid, komentar.korisnikid,kr.KorisnickoIme,komentar.Sadrzaj,komentar.datum ORDER BY Datum DESC  LIMIT 100', { type: db.sequelize.QueryTypes.SELECT})
-  .then(function(result) {res.status(200).send(result);})
-  .catch( err => res.status(500).json(err) );
+  if(req.query.ime){
+    db.sequelize.query("SELECT KorisnickoIme,Sadrzaj,COUNT(o.goreglasovi) AS gore,COUNT(o.doleglasovi) AS dole,Datum FROM komentar LEFT JOIN korisnik AS kr ON komentar.KorisnikId = kr.Id LEFT JOIN ocena AS o ON komentar.id=o.komentarid WHERE KorisnickoIme ='"+req.query.ime+"' GROUP BY komentar.id,komentar.korisnikid, komentar.korisnikid,kr.KorisnickoIme,komentar.Sadrzaj,komentar.datum ORDER BY Datum DESC  LIMIT 100", { type: db.sequelize.QueryTypes.SELECT})
+    .then(function(result) {res.status(200).send(result);})
+    .catch( err => res.status(500).json(err) );
   }
   else{
-    db.sequelize.query("SELECT KorisnickoIme,Sadrzaj,COUNT(o.goreglasovi) AS gore,COUNT(o.doleglasovi) AS dole,Datum FROM komentar LEFT JOIN korisnik AS kr ON komentar.KorisnikId = kr.Id LEFT JOIN ocena AS o ON komentar.id=o.komentarid WHERE KorisnickoIme ='"+req.query.ime+"' GROUP BY komentar.id,komentar.korisnikid, komentar.korisnikid,kr.KorisnickoIme,komentar.Sadrzaj,komentar.datum ORDER BY Datum DESC  LIMIT 100", { type: db.sequelize.QueryTypes.SELECT})
+    db.sequelize.query('SELECT KorisnickoIme,Sadrzaj,COUNT(o.goreglasovi) AS gore,COUNT(o.doleglasovi) AS dole,Datum FROM komentar LEFT JOIN korisnik AS kr ON komentar.KorisnikId = kr.Id LEFT JOIN ocena AS o ON komentar.id=o.komentarid GROUP BY komentar.id,komentar.korisnikid, komentar.korisnikid,kr.KorisnickoIme,komentar.Sadrzaj,komentar.datum ORDER BY Datum DESC  LIMIT 100', { type: db.sequelize.QueryTypes.SELECT})
     .then(function(result) {res.status(200).send(result);})
     .catch( err => res.status(500).json(err) );
   }
