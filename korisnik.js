@@ -309,4 +309,21 @@ ruter.post("/getUserId", async(req,res)=>{
   
 });
 
+ruter.post("/getUserName", async(req,res)=>{
+  const par1="'"+req.body.id+"'";
+
+
+    try{
+  //dobavljamo podatke iz baze
+  const result = await db.sequelize.query("SELECT name FROM Korisnik WHERE id="+par1,{type: db.sequelize.QueryTypes.SELECT});
+  const id=result[0].id;
+  res.status(200).send(JSON.stringify({id:id}));
+  }
+  catch(err){
+    console.log("Nesto je poslo po zlu"+err);
+    res.status(500).send("Greska "+err);
+  }
+  
+});
+
 module.exports=ruter;
