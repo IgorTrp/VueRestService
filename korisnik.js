@@ -315,8 +315,8 @@ ruter.post("/getUserName", async(req,res)=>{
 
     try{
   //dobavljamo podatke iz baze
-  const result = await db.sequelize.query("SELECT ime FROM Korisnik WHERE id="+par1,{type: db.sequelize.QueryTypes.SELECT});
-  const ime=result[0].ime;
+  const result = await db.sequelize.query("SELECT korisnickoime FROM Korisnik WHERE id="+par1,{type: db.sequelize.QueryTypes.SELECT});
+  const ime=result[0].korisnickoime;
   res.status(200).send(JSON.stringify({id:ime}));
   }
   catch(err){
